@@ -1,0 +1,29 @@
+{% for field in formulario %}
+
+<div class="dgtic-form-row ">
+    <div class="dgtic-form-label">
+        <!-- pintamos etiqueta -->
+        {{ field.label_tag }}
+        {% if field.field.required %}
+            <b style="color:red;">*</b>
+        {% endif %}
+    </div>
+    
+    <div class="dgtic-form-item">
+        
+         {{ field }}
+         {% for error in field.errors %}
+         <span class="errorMessage">{{error}}</span>
+         {% endfor %}
+
+    </div>
+
+    <div class="help_text">
+        <span class="muted">{{ field.help_text }}</span>
+    </div>
+   
+
+</div>
+
+
+{% endfor %}

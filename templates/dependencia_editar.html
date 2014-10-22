@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block contenedor %}
+
+<div class="span6">
+
+        <div class="dgtic-panel">
+            <div class="dgtic-panel-header">
+                <span class="dgtic-panel-title">
+                   <i class="icon-list"></i> Editar Dependencia
+                </span>
+            </div>
+
+              <div class="dgtic-panel-content dgtic-form-container">
+            <div class="dgtic-form-inline">
+            <form  action="" method="post" class="dgtic-form">{% csrf_token %}
+                {% include "form_snippets.html" %}
+                <div class="btn-row">
+                <button class="btn btn-success btn-small">Guardar</button>
+                <a href="/dependencia/consultar/" class="btn btn-danger btn-small">Cancelar</a>
+                </div>
+            </form>
+            </div>
+        </div>
+</div>
+{% endblock %}

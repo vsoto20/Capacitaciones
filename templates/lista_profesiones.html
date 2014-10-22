@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block contenedor %}
+
+            <div class="span12">
+                            	<div class="dgtic-panel collapsible">
+                                	<div class="dgtic-panel-header">
+                                    	<span class="dgtic-panel-title">
+                                            <i class="icol-grid"></i>
+                                            Profesiones
+                                        </span>
+                                        <div class="dgtic-panel-toggler"><span></span></div>
+                                    </div>
+                                    <div class="dgtic-panel-inner-wrap">
+                                        <div class="dgtic-panel-content dgtic-table-container">
+
+                                                <table class="dgtic-table checkable" id="table-profesiones">
+                                                    <thead>
+                                                            <tr>
+                                                                <th class="checkbox-column"><input type="checkbox"></th>
+                                                                <th>ID</th>
+                                                                <th>Descripción</th>
+                                                                <th>Abreviatura</th>
+
+                                                                <th></th>
+                                                            </tr>
+                                                    </thead>
+                                                        <tbody>
+                                                        {% for profesion in profesiones %}
+                                                            <tr>
+
+                                                                <td class="checkbox-column"><input type="checkbox"></td>
+                                                                <td>{{ profesion.id }}</td>
+                                                                <td>{{ profesion.descripcion }}</td>
+                                                                <td>{{ profesion.abreviatura }}</td>
+                                                                <td class="dgtic-icon-column">
+                                                                    <a href="/profesion/editar/{{ profesion.id }}"><i class="icol-pencil"></i></a>
+                                                                    <a href="/profesion/eliminar/{{ profesion.id }}"><i class="icol-cross"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+            </div>
+
+
+{% endblock %}
+
+{% block jquery %}
+
+<script>
+                        $(document).ready(function() {
+
+                            if( $.fn.dataTable )
+                             {
+                                $.fn.dataTableExt.sErrMode="throw";
+                                $('#table-profesiones').dataTable({
+
+                                    bPaginate: true,
+                                    bfilter:true,
+                                    bInfo: true,
+                                    bSort: false,
+                                    "oLanguage":{
+                            "sProcessing":     "Procesando...",
+                            "sLengthMenu":     "Mostrar _MENU_ registros",
+                            "sZeroRecords":    "No se encontraron resultados",
+                            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix":    "",
+                            "sSearch":         "Buscar:",
+                            "sUrl":            "",
+                            "sInfoThousands":  ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst":    "Primero",
+                                "sLast":     "Último",
+                                "sNext":     "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+}
+
+
+                                });
+                            }
+                        });
+                        </script>
+{% endblock %}
